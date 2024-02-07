@@ -4,20 +4,21 @@ import { createOrder,fetchOrders,fetchProducts } from "../redux/features/actions
 import { useDispatch,useSelector } from "react-redux";
 import { useEffect } from "react";
 import formatCurrency from "../utilities/formatCurrency";
+import { useNavigate } from "react-router-dom";
 
 export default function Orders() {
 
   const { closeCart, cartItems } = useShoppingCart();
   const {products,orders, loading, error} = useSelector((state:any) => state.products);
   console.log(orders)
-
+const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user') || '{}');
 
   const dispatch = useDispatch();
   if(cartItems.length === 0)  window.location.replace("/discover");
 
   useEffect(() => {
-    if(!user.token)  window.location.replace("/login");
+    if(!user.token) navigate('/login');
    
     dispatch(fetchOrders() as any);
  }

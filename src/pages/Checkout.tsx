@@ -3,19 +3,21 @@ import CartItem from "../components/CartItem";
 import { createOrder,fetchProducts ,fetchOrders} from "../redux/features/actions/products";
 import { useDispatch,useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
  const Checkout = () => {
   const { closeCart, cartItems } = useShoppingCart();
+  const navigate = useNavigate();
   const {products, loading, error} = useSelector((state:any) => state.products);
 
   const user = JSON.parse(localStorage.getItem('user') || '{}');
 
 
   const dispatch = useDispatch();
-  if(cartItems.length === 0)  window.location.replace("/discover");
+  if(cartItems.length === 0)  navigate('/discover');
 
   useEffect(() => {
-    if(!user.token)  window.location.replace("/login");
+    if(!user.token) navigate('/login');
    
     dispatch(fetchProducts() as any);
  }

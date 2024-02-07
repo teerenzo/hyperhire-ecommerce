@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,7 +14,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handlelogin = async (e: any) => {
@@ -49,7 +49,7 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(result.data));
       
       setIsLoading(false);
-      window.location.replace("/checkout");
+      navigate('/');
 
       } else {
            
