@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import { fetchProducts,fetchProductById ,createOrder,fetchOrders} from './actions/products';
+import { fetchProducts ,createOrder,fetchOrders} from './actions/products';
 
 const initialState = {
     products: [],
@@ -27,22 +27,7 @@ const productsSlice = createSlice({
         builder.addCase(fetchProducts.rejected, (state, action) => {
             state.loading = false;
   
-        }
-        );
-        builder.addCase(fetchProductById.pending, (state, action) => {
-            state.loading = true;
         });
-        builder.addCase(fetchProductById.fulfilled, (state, action) => {
-            state.loading = false;
-            state.product = action.payload;
-            state.error = { payload: null, status: false };
-        });
-        builder.addCase(fetchProductById.rejected, (state, action) => {
-            state.loading = false;
-           
-        }
-
-        );
         builder.addCase(createOrder.pending, (state, action) => {
             state.loading = true;
         });

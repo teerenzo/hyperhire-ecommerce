@@ -1,5 +1,9 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 const HOST: string = (import.meta.env.VITE_BACKEND_URL);
+
+const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+
 export const fetchProducts = createAsyncThunk(
     'products/fetchproducts',
     async (data, thunkAPI) => { 
@@ -23,27 +27,6 @@ export const fetchProducts = createAsyncThunk(
 
 
 
-// fetch tasks by id
-export const fetchProductById = createAsyncThunk(
-    'products/fetchProductById',
-    async (id, thunkAPI) => {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/tasks/${id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-        });
-        const result = await response.json();
-        if (response.status === 200) {
-            return result;
-        } else {
-            return thunkAPI.rejectWithValue(result);
-        }
-    }
-);
-
-
 // create order
 export const createOrder = createAsyncThunk(
     'products/createOrder',
@@ -52,7 +35,7 @@ export const createOrder = createAsyncThunk(
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${user.token}`
             },
             body: JSON.stringify(data),
         });
@@ -74,7 +57,7 @@ export const fetchOrders = createAsyncThunk(
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${user.token}`
             },
         });
         const result = await response.json();

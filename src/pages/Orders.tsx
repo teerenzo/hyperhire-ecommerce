@@ -12,10 +12,9 @@ export default function Orders() {
   const {products,orders, loading, error} = useSelector((state:any) => state.products);
   console.log(orders)
 const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
+const user = JSON.parse(localStorage.getItem('user') || '{}');
 
   const dispatch = useDispatch();
-  if(cartItems.length === 0)  window.location.replace("/discover");
 
   useEffect(() => {
     if(!user.token) navigate('/login');

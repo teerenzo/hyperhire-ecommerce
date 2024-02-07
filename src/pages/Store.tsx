@@ -1,7 +1,7 @@
 import StoreItem from "../components/StoreItem";
 import { useState,useEffect } from "react";
 import { useSelector,useDispatch } from 'react-redux';
-import { fetchProducts,fetchProductById } from '../redux/features/actions/products';
+import { fetchProducts } from '../redux/features/actions/products';
 
 export default function Store() {
 

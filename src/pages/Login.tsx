@@ -103,9 +103,11 @@ const navigate = useNavigate();
             )
           }
         </form>
-        <a className="text-blue-700 text-center text-sm" href="/register">
+        <Link to="/register" className="text-blue-700 text-center text-sm">
+        <b className="text-blue-700 text-center text-sm">
          You don't have an account? Register
-        </a>
+        </b>
+        </Link>
       </div>
     </div>
   );

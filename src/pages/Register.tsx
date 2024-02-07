@@ -125,9 +125,11 @@ const navigate = useNavigate();
             )
           }
         </form>
-        <a className="text-blue-700 text-center text-sm" href="/login">
+        <Link to="/login" className="text-blue-700 text-center text-sm">
+
           Already have an account? Login
-        </a>
+     
+        </Link>
       </div>
     </div>
   );
