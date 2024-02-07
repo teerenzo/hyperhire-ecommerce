@@ -29,7 +29,7 @@ export default function Store() {
     <>
  
       <h1 className="text-4xl m-8">Your Best Book Store</h1>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap pl-8">
         {products&&products.map((item:any) => {
           return (
             <div key={item.id}>
