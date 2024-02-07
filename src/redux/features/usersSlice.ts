@@ -27,7 +27,7 @@ const userReducer= createSlice({
         })
         builder.addCase(login.rejected,(state,action)=>{
             state.loading=false;
-            state.error={payload:action.payload,status:true}
+         
         })
 
         builder.addCase(fetchUsers.pending,(state,action)=>{
@@ -41,7 +41,7 @@ const userReducer= createSlice({
         })
         builder.addCase(fetchUsers.rejected,(state,action)=>{
             state.loading=false;
-            state.error={payload:action.payload,status:true}
+           
         })
     }
 

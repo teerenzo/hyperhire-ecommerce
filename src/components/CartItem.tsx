@@ -1,5 +1,4 @@
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import storeItem from "../data/items.json";
 import { useSelector,useDispatch } from 'react-redux';
 import formatCurrency from "../utilities/formatCurrency";
 type CartItemProps = {

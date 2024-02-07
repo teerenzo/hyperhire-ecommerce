@@ -4,7 +4,7 @@ import { createOrder,fetchProducts ,fetchOrders} from "../redux/features/actions
 import { useDispatch,useSelector } from "react-redux";
 import { useEffect } from "react";
 
-export default function Checkout() {
+ const Checkout = () => {
   const { closeCart, cartItems } = useShoppingCart();
   const {products, loading, error} = useSelector((state:any) => state.products);
 
@@ -12,10 +12,10 @@ export default function Checkout() {
 
 
   const dispatch = useDispatch();
-  if(cartItems.length === 0) return window.location.replace("/discover");
+  if(cartItems.length === 0)  window.location.replace("/discover");
 
   useEffect(() => {
-    if(!user.token) return window.location.replace("/login");
+    if(!user.token)  window.location.replace("/login");
    
     dispatch(fetchProducts() as any);
  }
@@ -51,6 +51,7 @@ export default function Checkout() {
   };
 
   return (
+    <>
     <div className="p-4">
       <div className="min-h-screen ">
         <div className="container mx-auto p-10 max-w-screen-lg">
@@ -80,5 +81,8 @@ export default function Checkout() {
         </div>
       </div>
     </div>
+    </>
   );
 }
+
+export default Checkout;

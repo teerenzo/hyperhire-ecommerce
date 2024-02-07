@@ -3,9 +3,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-// import axios from "axios";
-// import isPublic from "../utils/isPublic";
-// import { ToastContainer, toast } from "react-toastify";
 
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/features/actions/auth";
@@ -30,27 +27,38 @@ const Login = () => {
     }
     setIsLoading(true);
 
-    dispatch(login({email, password})).then((res) => {
-      console.log(res);
-      if(res&&res.payload&&res.error){
-    
+    const data = {
+      email,
+      password
+    }
+    const HOST: string = import.meta.env.VITE_BACKEND_URL;
+
+    const response = await fetch(`${HOST}/auth/login`, {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log(response);
+      if (response.status === 200) {
+          console.log(result);
+      localStorage.setItem("token", result.token);
+      toast.success("Login Successfull");
+      localStorage.setItem("user", JSON.stringify(result.data));
+      
+      setIsLoading(false);
+      window.location.replace("/checkout");
+
+      } else {
+           
         toast.error("wrong credentials");
         setIsLoading(false);
-      }else{
-
-        toast.success("Login Successfull");
-        localStorage.setItem("user", JSON.stringify(res.payload.data));
-        
-        setIsLoading(false);
-        window.location.replace("/checkout");
-
-  
+     
       }
-    }).catch((err:any) => {
-    setIsLoading(false);
-      toast.error("Error Occured");
-    });
 
+   
   };
 
   return (

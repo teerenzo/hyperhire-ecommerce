@@ -1,4 +1,3 @@
-import storeItems from "../data/items.json";
 import StoreItem from "../components/StoreItem";
 import { useState,useEffect } from "react";
 import { useSelector,useDispatch } from 'react-redux';

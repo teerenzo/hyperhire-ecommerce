@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import formatCurrency from "../utilities/formatCurrency";
 
 export default function Orders() {
+
   const { closeCart, cartItems } = useShoppingCart();
   const {products,orders, loading, error} = useSelector((state:any) => state.products);
   console.log(orders)
@@ -13,18 +14,16 @@ export default function Orders() {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
 
   const dispatch = useDispatch();
-  if(cartItems.length === 0) return window.location.replace("/discover");
+  if(cartItems.length === 0)  window.location.replace("/discover");
 
   useEffect(() => {
-    if(!user.token) return window.location.replace("/login");
+    if(!user.token)  window.location.replace("/login");
    
     dispatch(fetchOrders() as any);
  }
 
 , [dispatch]);
  
-
-
   return (
     <div className="p-4">
       <div className="min-h-screen ">
